@@ -1,7 +1,7 @@
 nltk
 scipy
 joblib
-sklearn
+scikit-learn
 pandas
 fuzzywuzzy
 numpy
