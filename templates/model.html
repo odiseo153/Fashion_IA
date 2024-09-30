@@ -1,0 +1,84 @@
+{% extends 'Index.html' %}
+
+{% block content %}
+<section class="relative block bg-gray-900 text-white min-h-screen">
+  <div class="container mx-auto px-4 lg:pt-24 lg:pb-64">
+    
+    <div class="row">
+      <div class="col-12 mb-4 text-center">
+        <h2 class="text-4xl font-bold">¡PRUEBALO!</h2>
+        <p class="text-lg">Dime cómo eres físicamente, tu personalidad y a dónde vas.</p>
+      </div>
+    </div>
+
+    <!-- Contenedor general para los campos y las imágenes -->
+    <div class=" ">
+      <!-- Sección de campos a la izquierda -->
+      <div class="w-full mb-8"> <!-- Cambiado a w-full para que ocupe el ancho completo -->
+        <!-- Campo de entrada de texto -->
+        <div class=" ">
+          <input
+            type="text"
+            class="form-control rounded-3 w-full"
+            placeholder="Ingrese su consulta"
+            aria-label="Consulta"
+            id="name"
+            value="Soy una mujer alta, de ojos verdes, cabello largo, soy delgada y de piel blanca, mi cuello es corto y me considero una mujer segura de mí misma, asistiré a una boda"
+          />
+        </div>
+
+        <!-- Botón de enviar -->
+        <button class="btn btn-primary mt-3 w-25" id="toggle-suggestions">Enviar</button>
+      </div>
+
+      
+
+      <!-- Sección de imágenes a la derecha -->
+      <div class="w-full"> <!-- Cambiado a w-full para que ocupe el ancho completo -->
+        <!-- Spinner de carga -->
+        <div id="spinner" class="hidden">
+          <div class="flex justify-center items-center">
+            <div class="loader ease-linear rounded-full border-4 border-t-4 border-gray-200 h-12 w-12"></div>
+          </div>
+        </div>
+
+        <!-- Contenedor de sugerencias y las imágenes -->
+        <div id="sugerencias" class="hidden">
+          <nav aria-label="Paginación de imágenes" class="mt-8">
+            <ul id="paginacion" class="flex justify-center space-x-2">
+              <!-- Botones de paginación generados dinámicamente -->
+            </ul>
+          </nav>
+
+          <div id="recommended-images" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 mt-8">
+            <!-- Las imágenes se cargarán aquí dinámicamente -->
+          </div>
+
+          <!-- Paginación -->
+          <nav aria-label="Paginación de imágenes" class="mt-8">
+            <ul id="paginacion" class="flex justify-center space-x-2">
+              <!-- Botones de paginación generados dinámicamente -->
+            </ul>
+          </nav>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Modal -->
+<div id="product-modal" class="fixed inset-0 flex items-center justify-center z-50 hidden bg-black bg-opacity-50">
+  <div class="bg-white rounded-lg shadow-lg max-w-md w-full p-6">
+    <button id="close-modal" class="absolute top-2 right-2 text-gray-600 hover:text-gray-900">
+      &times;
+    </button>
+    <img id="modal-product-image" class="rounded-lg mb-4 w-full h-48 object-cover" src="" alt="Product Image" />
+    <h2 id="modal-product-title" class="text-2xl font-bold mb-2"></h2>
+    <p id="modal-product-price" class="text-lg font-semibold mb-2"></p>
+    <p id="modal-product-rating" class="mb-4"></p>
+    <p id="modal-product-description" class="text-gray-700"></p>
+  </div>
+</div>
+
+<script src="{{ url_for('static', filename='js/index.js') }}"></script>
+{% endblock %}

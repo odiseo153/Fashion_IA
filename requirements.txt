@@ -1,0 +1,10 @@
+nltk
+scipy
+joblib
+sklearn
+pandas
+fuzzywuzzy
+numpy
+yagmail
+python-dotenv
+flask

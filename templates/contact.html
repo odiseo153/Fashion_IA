@@ -1,0 +1,73 @@
+{% extends 'Index.html' %}
+
+{% block content %}
+
+<div class="container flex flex-col justify-center items-center min-h-screen py-5">
+  <h1 class="text-center font-bold text-4xl hero-text mb-4">¡Estamos aquí para ayudarte!</h1>
+  <div class="form-container p-4 rounded-lg shadow-sm w-full max-w-md">
+    <form id="contact-form">
+      <div class="mb-4">
+        <label for="nombre" class="block text-lg font-bold text-blue-500">Escribe Tu Nombre</label>
+        <input type="text" class="form-control w-full rounded-lg p-2 border border-gray-300" id="nombre" name="nombre" placeholder="Ingresa tu nombre" required>
+      </div>
+      <div class="mb-4">
+        <label for="textarea" class="block text-lg font-bold text-blue-500">¿Qué Necesitas?</label>
+        <textarea class="form-control w-full rounded-lg p-2 border border-gray-300" id="textarea" name="textarea" rows="5" placeholder="¿Qué podemos hacer por ti?" required></textarea>
+      </div>
+      <button type="submit" class="w-full py-2 bg-blue-500 text-white font-bold rounded-lg hover:bg-blue-600 disabled:bg-gray-400 disabled:cursor-not-allowed transition-all" id="submit-btn" disabled>Enviar</button>
+    </form>
+  </div>
+</div>
+
+<!-- jQuery and script to handle the form submission -->
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<!-- Toastr CSS -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css"/>
+
+<!-- Toastr JS -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
+
+<script>
+  $(document).ready(function () {
+    // Habilitar el botón de enviar cuando el nombre es válido
+    $('#nombre').on('input', function () {
+      const nombre = $(this).val();
+      
+      if (nombre.length > 3) {
+        $('#submit-btn').prop('disabled', false);
+      } else {
+        $('#submit-btn').prop('disabled', true);
+      }
+    });
+
+    // Manejar el envío del formulario
+    $('#contact-form').on('submit', function (e) {
+      e.preventDefault(); // Evitar el comportamiento predeterminado del formulario
+
+      // Extraer los datos del formulario
+      const nombre = $('#nombre').val();
+      const mensaje = $('#textarea').val();
+
+      // Hacer la petición AJAX al endpoint /send
+      $.ajax({
+        url: '/send', // El endpoint que mencionaste
+        method: 'POST',
+        contentType: 'application/json',
+        data: JSON.stringify({
+          nombre: nombre,
+          mensaje: mensaje
+        }),
+        success: function (response) {
+          toastr.success('Correo enviado correctamente.'); // Reemplaza el alert por Toastr
+          // Limpia el formulario
+          $('#contact-form')[0].reset();
+          $('#submit-btn').prop('disabled', true); // Deshabilitar el botón nuevamente
+        },
+        error: function (xhr, status, error) {
+          toastr.error('Error al enviar el correo. Intenta de nuevo.'); // Reemplaza el alert por Toastr
+        }
+      });
+    });
+  });
+</script>
+{% endblock %}
