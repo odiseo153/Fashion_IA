@@ -4,6 +4,8 @@
 
 ¡Bienvenido a nuestra IA de Recomendación de Productos! Esta aplicación utiliza inteligencia artificial para sugerir productos personalizados basados en las características físicas, personalidad y el evento al que asistirás.
 
+pruebalo : https://fashion-ia.onrender.com
+
 
 ## Home
 
