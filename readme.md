@@ -1,7 +1,6 @@
 # IA de Recomendación de Productos
 
 ![Logo](https://static.thenounproject.com/png/337564-200.png)  
-*Logo de la IA de Recomendación de Productos*
 
 ¡Bienvenido a nuestra IA de Recomendación de Productos! Esta aplicación utiliza inteligencia artificial para sugerir productos personalizados basados en las características físicas, personalidad y el evento al que asistirás.
 
