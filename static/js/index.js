@@ -142,7 +142,7 @@ $(document).ready(function () {
 
   function crearElementoProducto(producto) {
       return `
-    <div class="max-w-sm bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700">
+       <div class="max-w-sm bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700">
         <a href="#">
         <img class="p-4 rounded-t-lg object-cover h-48 w-full" src="${producto.product_photo}" alt="Imagen del producto" />
         </a>
@@ -153,12 +153,14 @@ $(document).ready(function () {
         <div class="flex items-center mt-2.5 mb-5 text-dark dark:text-dark">
             Calificación: ${producto.product_star_rating} (${producto.product_num_ratings} valoraciones)
         </div>
-        <div class="flex items-center justify-between">
-            <span class="text-2xl font-bold text-dark dark:text-gray-300">$${producto.product_price}</span>
+       
+        <span class="text-2xl font-bold text-dark dark:text-gray-300">$${producto.product_price}</span>
+        <div class="mt-3  items-center justify-between">
             <a href="${producto.product_url}" target="_blank" class="text-dark bg-blue-500 hover:bg-blue-600 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-500 dark:hover:bg-blue-600 dark:focus:ring-blue-800">Ver en amazon</a>
         </div>
-        </div>
-    </div>    
+        
+      </div>
+    </div>   
       `;
   }
 
