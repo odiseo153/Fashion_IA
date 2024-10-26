@@ -70,6 +70,7 @@ $(document).ready(function () {
           contentType: "application/json",
           data: JSON.stringify({ texto: nameInput }),
           success: function (data) {
+            console.log(data);
               manejarDatosProductos(data, productContainer, paginacionContainer);
           },
           error: function (error) {
@@ -139,30 +140,48 @@ $(document).ready(function () {
           paginacionContainer.append(nextButton);
       }
   }
-
-  function crearElementoProducto(producto) {
-      return `
-       <div class="max-w-sm bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700">
-        <a href="#">
-        <img class="p-4 rounded-t-lg object-cover h-48 w-full" src="${producto.product_photo}" alt="Imagen del producto" />
-        </a>
-        <div class="px-5 pb-5">
-        <a href="#">
-            <h5 class="text-xl font-semibold tracking-tight text-dark dark:text-gray-300">${producto.product_title}</h5>
-        </a>
-        <div class="flex items-center mt-2.5 mb-5 text-dark dark:text-dark">
-            Calificación: ${producto.product_star_rating} (${producto.product_num_ratings} valoraciones)
-        </div>
-       
-        <span class="text-2xl font-bold text-dark dark:text-gray-300">$${producto.product_price}</span>
-        <div class="mt-3  items-center justify-between">
-            <a href="${producto.product_url}" target="_blank" class="text-dark bg-blue-500 hover:bg-blue-600 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-500 dark:hover:bg-blue-600 dark:focus:ring-blue-800">Ver en amazon</a>
-        </div>
-        
-      </div>
-    </div>   
-      `;
+  function toggleModal() {
+    const modal = document.getElementById('productModal');
+    modal.classList.toggle('hidden');
   }
+  
+  function openProductModal(product) {
+    // Actualiza los datos del modal con la información del producto
+    document.getElementById('modalProductImage').src = product.product_photo;
+    document.getElementById('modalProductTitle').textContent = product.product_title;
+    document.getElementById('modalProductPrice').textContent = product.product_price;
+    document.getElementById('modalProductDelivery').textContent = product.delivery;
+    document.getElementById('modalProductAsin').textContent = product.asin;
+    document.getElementById('modalProductRating').textContent = product.product_star_rating;
+    document.getElementById('modalProductNumRatings').textContent = product.product_num_ratings;
+    document.getElementById('modalSalesVolume').textContent = product.sales_volume;
+    document.getElementById('modalAmazonPrime').textContent = product.is_prime ? "Prime" : "No Prime";
+    document.getElementById('modalProductUrl').href = product.product_url;
+  
+    // Muestra el modal
+    toggleModal();
+  }
+  
+  function crearElementoProducto(producto) {
+    return `
+      <div class="producto flex flex-col border border-gray-200 rounded-md p-4 cursor-pointer" onclick="openProductModal(${JSON.stringify(producto).replace(/"/g, '&quot;')})">
+        <img src="${producto.product_photo}" alt="Producto" class="w-full h-48 object-cover mb-4 rounded-md">
+        <div class="flex-grow">
+          <h2 class="text-lg font-semibold">${producto.product_title}</h2>
+          <p class="text-xl font-bold text-blue-600 mt-2">${producto.product_price}</p>
+        </div>
+        <div>
+          <div class="flex items-center mb-2">
+            Calificación: ${producto.product_star_rating} (${producto.product_num_ratings} valoraciones)
+          </div>
+        </div>
+        <div>
+          <a href="${producto.product_url}" target="_blank" class="block w-full px-4 py-2 text-center bg-blue-500 text-white rounded-md">Ver en Amazon</a>
+        </div>
+      </div>
+    `;
+  }
+  
 
   function crearElementoPagina(i) {
       return `<button class="p-2 ${paginaActual === i ? 'font-bold' : ''}" data-pagina="${i}">${i}</button>`;

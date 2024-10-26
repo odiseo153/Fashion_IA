@@ -32,10 +32,6 @@
       </div>
 
 
-
-      
-
-
       <!-- Sección de imágenes a la derecha -->
       <div class="w-full"> <!-- Cambiado a w-full para que ocupe el ancho completo -->
         <!-- Spinner de carga -->
@@ -72,20 +68,50 @@
 
 
 
-
 <!-- Modal -->
-<div id="product-modal" class="fixed inset-0 flex items-center justify-center z-50 hidden bg-black bg-opacity-50">
-  <div class="bg-white rounded-lg shadow-lg max-w-md w-full p-6">
-    <button id="close-modal" class="absolute top-2 right-2 text-gray-600 hover:text-gray-900">
+<div id="productModal" class="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center hidden">
+  <div class="bg-white rounded-lg w-full max-w-md p-6 space-y-4 shadow-lg relative">
+    <!-- Botón de cierre -->
+    <button onclick="toggleModal()" class="absolute top-2 right-2 text-gray-500 hover:text-gray-700">
       &times;
     </button>
-    <img id="modal-product-image" class="rounded-lg mb-4 w-full h-48 object-cover" src="" alt="Product Image" />
-    <h2 id="modal-product-title" class="text-2xl font-bold mb-2"></h2>
-    <p id="modal-product-price" class="text-lg font-semibold mb-2"></p>
-    <p id="modal-product-rating" class="mb-4"></p>
-    <p id="modal-product-description" class="text-gray-700"></p>
+
+    <!-- Imagen del producto -->
+    <div class="flex justify-center">
+      <img src="https://m.media-amazon.com/images/I/514iOcQPV4L._AC_UL960_FMwebp_QL65_.jpg" alt="Imagen del producto" class="w-40 h-40 object-cover rounded-md">
+    </div>
+
+    <!-- Título del producto -->
+    <h2 class="text-lg font-semibold text-center text-gray-800">
+      Susook Number Necklace for Boy Black Athletes Number Stainless Steel Chain
+    </h2>
+
+    <!-- Precio y entrega -->
+    <div class="text-center">
+      <p class="text-2xl font-bold text-blue-600">$9.75</p>
+      <p class="text-sm text-green-600 font-semibold mt-1">FREE delivery Wed, Oct 30 on $35 of items shipped by Amazon</p>
+    </div>
+
+    <!-- Información adicional -->
+    <div class="space-y-2">
+      <p><strong>ASIN:</strong> B09VCB951K</p>
+      <p><strong>Valoración:</strong> ⭐ 4.5 (3,520 valoraciones)</p>
+      <p><strong>Más de 100 vendidos en el último mes</strong></p>
+      <p><strong>Disponible en Amazon:</strong> <span class="text-green-600 font-semibold">Prime</span></p>
+      <p><strong>Opción de compra mínima:</strong> $9.75</p>
+    </div>
+
+    <!-- Botón para ver en Amazon -->
+    <a href="#" target="_blank" class="block text-center bg-yellow-500 text-white px-4 py-2 rounded-md hover:bg-yellow-600 transition-colors">
+      Comprar en Amazon
+    </a>
   </div>
 </div>
+
+
+
+
+
 
 <script src="{{ url_for('static', filename='js/index.js') }}"></script>
 {% endblock %}
