@@ -164,23 +164,34 @@ $(document).ready(function () {
   
   function crearElementoProducto(producto) {
     return `
-      <div class="producto flex flex-col border border-gray-200 rounded-md p-4 cursor-pointer" onclick="openProductModal(${JSON.stringify(producto).replace(/"/g, '&quot;')})">
-        <img src="${producto.product_photo}" alt="Producto" class="w-full h-48 object-cover mb-4 rounded-md">
+      <div class="producto flex flex-col border border-gray-300 rounded-lg shadow-lg p-4 hover:shadow-xl transform hover:-translate-y-1 transition-all cursor-pointer" onclick="openProductModal(${JSON.stringify(producto).replace(/"/g, '&quot;')})">
+        <!-- Imagen del producto -->
+        <img src="${producto.product_photo}" alt="Producto" class="w-full h-48 object-cover mb-4 rounded-lg">
+  
+        <!-- Contenido del producto -->
         <div class="flex-grow">
-          <h2 class="text-lg font-semibold">${producto.product_title}</h2>
-          <p class="text-xl font-bold text-blue-600 mt-2">${producto.product_price}</p>
+          <h2 class="text-lg font-semibold text-white line-clamp-2 mb-2">${producto.product_title}</h2>
+          <p class="text-2xl font-bold text-blue-600 mt-1">${producto.product_price}</p>
         </div>
-        <div>
-          <div class="flex items-center mb-2">
-            Calificación: ${producto.product_star_rating} (${producto.product_num_ratings} valoraciones)
-          </div>
+  
+        <!-- Calificación -->
+        <div class="mt-4 flex items-center text-sm text-gray-600">
+          <span class="text-yellow-500 mr-1">★</span> 
+          ${producto.product_star_rating} 
+          <span class="ml-2">(${producto.product_num_ratings} valoraciones)</span>
         </div>
-        <div>
-          <a href="${producto.product_url}" target="_blank" class="block w-full px-4 py-2 text-center bg-blue-500 text-white rounded-md">Ver en Amazon</a>
+  
+        <!-- Botón de acción -->
+        <div class="mt-4">
+          <a href="${producto.product_url}" target="_blank" 
+            class="block w-full px-4 py-2 text-center bg-blue-500 hover:bg-blue-600 text-white rounded-lg font-semibold transition-colors">
+            Ver en Amazon
+          </a>
         </div>
       </div>
     `;
   }
+  
   
 
   function crearElementoPagina(i) {

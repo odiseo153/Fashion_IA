@@ -1,40 +1,86 @@
-<nav class="bg-white top-0 left-0 w-full shadow-lg">
-  <div class="container mx-auto flex items-center justify-between py-2 px-4">
+<nav class="bg-white top-0 left-0 w-full  transition-all duration-300 ease-in-out">
+  <div class="container mx-auto flex items-center justify-between py-3 px-4">
+    <!-- Logo -->
     <a href="/" class="flex items-center">
-      <img class="w-8" src="https://static.thenounproject.com/png/337564-200.png" alt="Logo">
+      <img class="w-10 h-10" src="https://static.thenounproject.com/png/337564-200.png" alt="Logo">
+      <span class="ml-2 text-xl font-bold text-gray-700">Fashion IA</span>
     </a>
-    <button class="lg:hidden text-gray-700 focus:outline-none" id="navbar-toggler">
-      <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7"></path>
+
+    <!-- Hamburger Button -->
+    <button
+      class="lg:hidden text-gray-700 focus:outline-none"
+      id="navbar-toggler"
+    >
+      <svg
+        class="w-6 h-6"
+        fill="none"
+        stroke="currentColor"
+        viewBox="0 0 24 24"
+        xmlns="http://www.w3.org/2000/svg"
+      >
+        <path
+          stroke-linecap="round"
+          stroke-linejoin="round"
+          stroke-width="2"
+          d="M4 6h16M4 12h16m-7 6h7"
+        ></path>
       </svg>
     </button>
-    <div class="hidden lg:flex space-x-4" id="navbar-menu">
-      <ul class="flex items-center space-x-6 text-sm">
-        
-        <li>
-          <a href="/" class="text-gray-700 hover:text-gray-900 font-semibold">Home</a>
-        </li>
 
+    <!-- Navbar Menu -->
+    <div
+      class="hidden lg:flex flex-col lg:flex-row lg:items-center lg:space-x-6 absolute lg:static top-16 left-0 w-full lg:w-auto bg-white lg:bg-transparent transition-all duration-300 ease-in-out"
+      id="navbar-menu"
+    >
+      <ul class="flex flex-col lg:flex-row items-center space-y-4 lg:space-y-0 lg:space-x-6 text-sm">
         <li>
-          <a href="/about" class="text-gray-700 hover:text-gray-900 font-semibold">About</a>
+          <a
+            href="/"
+            class="text-gray-700 hover:text-gray-900 font-semibold transition duration-300"
+            >Home</a
+          >
         </li>
-
         <li>
-          <a href="/model" class="text-gray-700 hover:text-gray-900 font-semibold">Model</a>
+          <a
+            href="/about"
+            class="text-gray-700 hover:text-gray-900 font-semibold transition duration-300"
+            >About</a
+          >
         </li>
-
         <li>
-          <a href="/contact" class="text-gray-700 hover:text-gray-900 font-semibold">Contact</a>
+          <a
+            href="/model"
+            class="text-gray-700 hover:text-gray-900 font-semibold transition duration-300"
+            >Model</a
+          >
         </li>
-
+        <li>
+          <a
+            href="/contact"
+            class="text-gray-700 hover:text-gray-900 font-semibold transition duration-300"
+            >Contact</a
+          >
+        </li>
       </ul>
     </div>
   </div>
 </nav>
 
 <script>
-  document.getElementById('navbar-toggler').addEventListener('click', function() {
-    const menu = document.getElementById('navbar-menu');
-    menu.classList.toggle('hidden');
+  const navbarToggler = document.getElementById("navbar-toggler");
+  const navbarMenu = document.getElementById("navbar-menu");
+
+  navbarToggler.addEventListener("click", () => {
+    // Toggle the hidden class
+    navbarMenu.classList.toggle("hidden");
+
+    // Add animation classes
+    if (!navbarMenu.classList.contains("hidden")) {
+      navbarMenu.classList.remove("opacity-0", "translate-y-[-20px]");
+      navbarMenu.classList.add("opacity-100", "translate-y-0");
+    } else {
+      navbarMenu.classList.remove("opacity-100", "translate-y-0");
+      navbarMenu.classList.add("opacity-0", "translate-y-[-20px]");
+    }
   });
 </script>
